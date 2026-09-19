@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu } from 'lucide-react'
 import Sidebar from './components/Sidebar'
+import EmptyState from './components/EmptyState'
 import { listConversations } from './lib/conversationStore'
 import type { Conversation } from './types'
 import './App.css'
@@ -45,7 +46,11 @@ function App() {
             <Menu size={22} strokeWidth={1.75} aria-hidden="true" />
           </button>
         </header>
-        <p>Main panel — Task 7 builds this</p>
+        {activeConversationId === null ? (
+          <EmptyState />
+        ) : (
+          <p>Conversation view — Task 8 builds this</p>
+        )}
       </main>
     </div>
   )
