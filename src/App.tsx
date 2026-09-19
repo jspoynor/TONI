@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { Menu } from 'lucide-react'
 import Sidebar from './components/Sidebar'
 import EmptyState from './components/EmptyState'
@@ -11,10 +12,14 @@ import {
   listConversations,
 } from './lib/conversationStore'
 import { sendMessage } from './lib/sendMessage'
-import type { ChatMessage, Conversation } from './types'
+import type { ChatMessage, ChatPageConfig, Conversation } from './types'
 import './App.css'
 
-function App() {
+interface AppProps {
+  config: ChatPageConfig
+}
+
+function App({ config }: AppProps) {
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConversationId, setActiveConversationId] = useState<
     string | null
@@ -42,7 +47,7 @@ function App() {
   // (e.g. sending the first message of a new conversation) should call
   // `refreshConversations()` afterward to keep the sidebar in sync.
   const refreshConversations = () =>
-    setConversations(listConversations('toni:conversations'))
+    setConversations(listConversations(config.storageKey))
 
   // `listConversations()` already returns full `Conversation` objects
   // (including `messages`), so the active conversation's messages can be
@@ -70,6 +75,10 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    document.title = config.name
+  }, [config.name])
+
   /**
    * Handles a submitted user message from `InputArea`. Creates a new
    * conversation on first send (or appends to the active one), then streams
@@ -85,11 +94,11 @@ function App() {
     let conversation: Conversation
 
     if (conversationId === null) {
-      conversation = createConversation('toni:conversations', message)
+      conversation = createConversation(config.storageKey, message)
       conversationId = conversation.id
       setActiveConversationId(conversationId)
     } else {
-      conversation = appendMessage('toni:conversations', conversationId, message)
+      conversation = appendMessage(config.storageKey, conversationId, message)
     }
     refreshConversations()
 
@@ -116,7 +125,7 @@ function App() {
       setStreamingContent(assistantContent)
     }
 
-    appendMessage('toni:conversations', conversationId, {
+    appendMessage(config.storageKey, conversationId, {
       id: assistantId,
       role: 'assistant',
       content: assistantContent,
@@ -130,8 +139,18 @@ function App() {
   }
 
   return (
-    <div id="app">
+    <div
+      id="app"
+      style={
+        {
+          '--accent': config.accent,
+          '--accent-bg': config.accentBg,
+          '--accent-border': config.accentBorder,
+        } as CSSProperties
+      }
+    >
       <Sidebar
+        name={config.name}
         conversations={conversations}
         activeConversationId={activeConversationId}
         onSelectConversation={setActiveConversationId}
@@ -152,12 +171,16 @@ function App() {
         </header>
         <div className="main-content">
           {activeConversationId === null ? (
-            <EmptyState />
+            <EmptyState greeting={config.emptyStateGreeting} />
           ) : (
             <MessageList messages={displayedMessages} />
           )}
         </div>
-        <InputArea onSend={handleSend} disabled={activeStreamingMessage !== null} />
+        <InputArea
+          name={config.name}
+          onSend={handleSend}
+          disabled={activeStreamingMessage !== null}
+        />
       </main>
     </div>
   )

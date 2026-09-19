@@ -6,6 +6,7 @@ import { createMessageId } from '../lib/conversationStore'
 import './InputArea.css'
 
 export interface InputAreaProps {
+  name: string
   onSend: (message: ChatMessage) => void
   /** True while a reply is streaming for the currently active conversation, to prevent double-submit. */
   disabled: boolean
@@ -26,7 +27,7 @@ const MAX_TEXTAREA_HEIGHT = 200
  * assembles a `ChatMessage` and hands it to `onSend`, which is where the
  * caller (App) does the actual store/streaming work.
  */
-function InputArea({ onSend, disabled }: InputAreaProps) {
+function InputArea({ name, onSend, disabled }: InputAreaProps) {
   const [text, setText] = useState('')
   const [pendingAttachments, setPendingAttachments] = useState<
     PendingAttachment[]
@@ -188,7 +189,7 @@ function InputArea({ onSend, disabled }: InputAreaProps) {
           <textarea
             ref={textareaRef}
             className="input-textarea"
-            placeholder="Message Toni…"
+            placeholder={`Message ${name}…`}
             rows={1}
             value={text}
             onChange={handleTextareaChange}

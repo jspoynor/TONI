@@ -3,6 +3,7 @@ import type { Conversation } from '../types'
 import './Sidebar.css'
 
 export interface SidebarProps {
+  name: string
   conversations: Conversation[]
   activeConversationId: string | null
   onSelectConversation: (id: string) => void
@@ -12,6 +13,7 @@ export interface SidebarProps {
 }
 
 function Sidebar({
+  name,
   conversations,
   activeConversationId,
   onSelectConversation,
@@ -40,7 +42,7 @@ function Sidebar({
           isOpen ? 'sidebar sidebar--open' : 'sidebar'
         }
       >
-        <h1 className="sidebar-wordmark">Toni</h1>
+        <h1 className="sidebar-wordmark">{name}</h1>
 
         <button
           type="button"

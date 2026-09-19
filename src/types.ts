@@ -20,3 +20,13 @@ export interface Conversation {
   createdAt: number
   updatedAt: number
 }
+
+export interface ChatPageConfig {
+  name: string // "Toni" | "Anne" — wordmark, placeholder, mock reply text
+  storageKey: string // localStorage key for this page's conversations
+  accent: string // e.g. "#c084fc" | "#f472b6"
+  accentBg: string // rgba tint derived from accent
+  accentBorder: string // rgba tint derived from accent
+  emptyStateGreeting: string
+  mockReplyText: string
+}
