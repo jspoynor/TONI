@@ -10,6 +10,7 @@ const config: ChatPageConfig = {
   emptyStateGreeting: 'What can I help you with?',
   mockReplyText:
     "No backend is connected yet — this is a simulated reply from Toni's mock response service. Once a real backend is wired up, responses will stream in through this same interface.",
+  foldersEnabled: true,
 }
 
 function VcChat() {
