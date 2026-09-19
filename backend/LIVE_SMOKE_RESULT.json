@@ -1,0 +1,13 @@
+{
+  "live_upload_status": 202,
+  "scan_job_status": "succeeded",
+  "submitted_snapshot_unchanged": true,
+  "update_kinds": [
+    "upload",
+    "scan_completed"
+  ],
+  "new_draft_status": "needs_information",
+  "scope": "Isolated PostgreSQL test schema; no imported company reports submitted.",
+  "paid_scan_calls": 2,
+  "estimated_scan_usd": 0.0026704
+}
