@@ -8,7 +8,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   overflow: hidden;
   color: var(--text);

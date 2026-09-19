@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Menu } from 'lucide-react'
 import Sidebar from './components/Sidebar'
 import EmptyState from './components/EmptyState'
+import MessageList from './components/MessageList'
 import { listConversations } from './lib/conversationStore'
 import type { Conversation } from './types'
 import './App.css'
@@ -19,6 +20,13 @@ function App() {
   // (e.g. sending the first message of a new conversation) should call
   // `refreshConversations()` afterward to keep the sidebar in sync.
   const refreshConversations = () => setConversations(listConversations())
+
+  // `listConversations()` already returns full `Conversation` objects
+  // (including `messages`), so the active conversation's messages can be
+  // derived directly without a separate store read.
+  const activeConversation = conversations.find(
+    (conversation) => conversation.id === activeConversationId,
+  )
 
   useEffect(() => {
     refreshConversations()
@@ -49,7 +57,7 @@ function App() {
         {activeConversationId === null ? (
           <EmptyState />
         ) : (
-          <p>Conversation view — Task 8 builds this</p>
+          <MessageList messages={activeConversation?.messages ?? []} />
         )}
       </main>
     </div>
