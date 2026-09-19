@@ -1,0 +1,84 @@
+[
+  {
+    "id": "complete",
+    "uploads": [
+      "01_complete_monthly.pdf"
+    ],
+    "expected": "expected_complete.json",
+    "checks": [
+      "All required information found",
+      "No missing-data questions",
+      "All fields remain unconfirmed until review"
+    ]
+  },
+  {
+    "id": "missing",
+    "uploads": [
+      "02_income_only_missing_context.pdf"
+    ],
+    "expected": "expected_income_only.json",
+    "checks": [
+      "Do not infer cash from net loss",
+      "Do not annualize total revenue into ARR",
+      "Ask at most three questions; ask risks and help in a later turn"
+    ]
+  },
+  {
+    "id": "scan",
+    "uploads": [
+      "03_scanned_monthly.pdf"
+    ],
+    "expected": "Same semantic values as expected_complete.json; source file must be 03_scanned_monthly.pdf",
+    "checks": [
+      "No embedded text",
+      "Use OCR",
+      "Retain page numbers",
+      "Do not treat OCR confidence as financial correctness"
+    ]
+  },
+  {
+    "id": "conflict",
+    "uploads": [
+      "01_complete_monthly.pdf",
+      "04_ambiguous_conflicting_note.pdf"
+    ],
+    "expected": {
+      "cash_on_hand": {
+        "value": null,
+        "status": "conflicting",
+        "candidates": [
+          {
+            "value": 420000,
+            "currency": "USD",
+            "source": "01_complete_monthly.pdf",
+            "page": 2
+          },
+          {
+            "value": 450000,
+            "currency": null,
+            "source": "04_ambiguous_conflicting_note.pdf",
+            "page": 1
+          }
+        ]
+      }
+    },
+    "checks": [
+      "Preserve both candidates and ask which is correct plus currency",
+      "Do not silently overwrite with newer upload",
+      "Revenue 120 is ambiguous; preserve supported statement value but flag note for clarification",
+      "Do not assume 120 means 120000"
+    ]
+  },
+  {
+    "id": "period",
+    "uploads": [
+      "05_wrong_period.txt"
+    ],
+    "expected": "All requested August 2026 fields remain missing; retain 2025 data only as out-of-period evidence.",
+    "checks": [
+      "Ask for August statement or August figures",
+      "Never divide annual revenue by 12",
+      "Do not use 2025 cash as August 2026 cash"
+    ]
+  }
+]

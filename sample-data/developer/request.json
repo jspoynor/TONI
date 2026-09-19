@@ -1,0 +1,19 @@
+{
+  "company_id": "demo-careflow",
+  "company_name": "Nemo Demo CareFlow Co.",
+  "frequency": "monthly",
+  "period_start": "2026-08-01",
+  "period_end": "2026-08-31",
+  "due_date": "2026-09-15",
+  "currency": "USD",
+  "required_fields": [
+    "revenue",
+    "cash_on_hand",
+    "arr",
+    "management_context",
+    "risks",
+    "help_requested"
+  ],
+  "arr_applicable": true,
+  "max_questions_per_turn": 3
+}
