@@ -1,0 +1,21 @@
+{
+  "database": "PostgreSQL 14.24, project-local instance",
+  "counts": {
+    "vc": 1,
+    "companies": 1,
+    "report_requests": 5,
+    "documents": 6,
+    "extraction_runs": 12,
+    "field_candidates": 48,
+    "report_fields": 30,
+    "questions": 24,
+    "report_versions": 0
+  },
+  "api_health": {
+    "status": "ok"
+  },
+  "tests": {
+    "postgresql_lifecycle_tests_passed": 13
+  },
+  "all_imported_reports_are_unsubmitted": true
+}

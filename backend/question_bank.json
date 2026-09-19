@@ -1,0 +1,139 @@
+{
+  "revenue": {
+    "label": "revenue",
+    "answer_contract": {
+      "type": "number",
+      "value_required": true,
+      "currency_required": true,
+      "unit": "base_units",
+      "dates_required": [
+        "period_start",
+        "period_end"
+      ],
+      "definition_required": false,
+      "allow_explicit_not_applicable": false,
+      "company_message_reference_required": true
+    },
+    "missing": "What was your revenue for {start} through {end}, in {currency}? Please separate recurring and one-time revenue if that distinction explains the change.",
+    "conflict": "The attached readings give different information for revenue. Please review the values and sources shown and tell us which is correct, or provide a correction. Include currency, units and the relevant dates.",
+    "reader_missing": "Only one reading found revenue. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify revenue reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available revenue does not clearly match this request. Please provide information for {start} through {end}.",
+    "clarify": "Please review revenue and provide the correct information for this report. Include amount, currency, units and reporting dates.",
+    "currency": "What currency is the revenue stated in? This request uses {currency}. If it differs, provide a {currency} figure and explain the conversion basis; we will not convert it automatically.",
+    "units": "Is the revenue shown in whole currency units, thousands or millions? Please provide the amount in whole units."
+  },
+  "cash_on_hand": {
+    "label": "cash balance",
+    "answer_contract": {
+      "type": "number",
+      "value_required": true,
+      "currency_required": true,
+      "unit": "base_units",
+      "dates_required": [
+        "as_of_date"
+      ],
+      "definition_required": false,
+      "allow_explicit_not_applicable": false,
+      "company_message_reference_required": true
+    },
+    "missing": "What was your cash balance as of {end}, in {currency}? Please state whether restricted cash is included.",
+    "conflict": "The attached readings give different information for cash balance. Please review the values and sources shown and tell us which is correct, or provide a correction. Include currency, units and the relevant dates.",
+    "reader_missing": "Only one reading found cash balance. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify cash balance reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available cash balance does not clearly match this request. Please provide the value as of {end}.",
+    "clarify": "Please review cash balance and provide the correct information for this report. Include amount, currency, units and reporting dates.",
+    "currency": "What currency is the cash balance stated in? This request uses {currency}. If it differs, provide a {currency} figure and explain the conversion basis; we will not convert it automatically.",
+    "units": "Is the cash balance shown in whole currency units, thousands or millions? Please provide the amount in whole units."
+  },
+  "arr": {
+    "label": "ARR",
+    "answer_contract": {
+      "type": "number",
+      "value_required": true,
+      "currency_required": true,
+      "unit": "base_units",
+      "dates_required": [
+        "as_of_date"
+      ],
+      "definition_required": true,
+      "allow_explicit_not_applicable": true,
+      "company_message_reference_required": true
+    },
+    "missing": "What was your ARR as of {end}, in {currency}, and what does it include or exclude? If ARR does not apply to your business, please say so.",
+    "conflict": "The attached readings give different information for ARR. Please review the values and sources shown and tell us which is correct, or provide a correction. Include currency, units and the relevant dates.",
+    "reader_missing": "Only one reading found ARR. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify ARR reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available ARR does not clearly match this request. Please provide the value as of {end}.",
+    "clarify": "Please review ARR and provide the correct information for this report. Include amount, currency, units and reporting dates.",
+    "currency": "What currency is the ARR stated in? This request uses {currency}. If it differs, provide a {currency} figure and explain the conversion basis; we will not convert it automatically.",
+    "units": "Is the ARR shown in whole currency units, thousands or millions? Please provide the amount in whole units.",
+    "definition": "How is your ARR as of {end} defined? Please explain treatment of one-time fees, unsigned contracts and contracts not yet live."
+  },
+  "management_context": {
+    "label": "management explanation",
+    "answer_contract": {
+      "type": "text",
+      "value_required": true,
+      "currency_required": false,
+      "unit": null,
+      "dates_required": [
+        "period_start",
+        "period_end"
+      ],
+      "definition_required": false,
+      "allow_explicit_not_applicable": false,
+      "company_message_reference_required": true
+    },
+    "missing": "What changed during {start} through {end}, and what caused those changes? Please distinguish recurring changes from one-time events.",
+    "conflict": "The attached readings give different information for management explanation. Please review the values and sources shown and tell us which is correct, or provide a correction. Please give the explanation you want included in this report.",
+    "reader_missing": "Only one reading found management explanation. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify management explanation reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available management explanation does not clearly match this request. Please provide information for {start} through {end}.",
+    "clarify": "Please review management explanation and provide the correct information for this report. Use your own explanation; you may explicitly say none for risks or requests for help."
+  },
+  "risks": {
+    "label": "risks and mitigation",
+    "answer_contract": {
+      "type": "text",
+      "value_required": true,
+      "currency_required": false,
+      "unit": null,
+      "dates_required": [
+        "period_start",
+        "period_end"
+      ],
+      "definition_required": false,
+      "allow_explicit_not_applicable": false,
+      "company_message_reference_required": true
+    },
+    "missing": "What material risks did you identify for {start} through {end}, and what action, owner and timing apply? You may explicitly report none.",
+    "conflict": "The attached readings give different information for risks and mitigation. Please review the values and sources shown and tell us which is correct, or provide a correction. Please give the explanation you want included in this report.",
+    "reader_missing": "Only one reading found risks and mitigation. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify risks and mitigation reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available risks and mitigation does not clearly match this request. Please provide information for {start} through {end}.",
+    "clarify": "Please review risks and mitigation and provide the correct information for this report. Use your own explanation; you may explicitly say none for risks or requests for help."
+  },
+  "help_requested": {
+    "label": "investor help requested",
+    "answer_contract": {
+      "type": "text",
+      "value_required": true,
+      "currency_required": false,
+      "unit": null,
+      "dates_required": [
+        "period_start",
+        "period_end"
+      ],
+      "definition_required": false,
+      "allow_explicit_not_applicable": false,
+      "company_message_reference_required": true
+    },
+    "missing": "What specific help would you like from your investors for this update? Include the desired action and timing, or explicitly say none.",
+    "conflict": "The attached readings give different information for investor help requested. Please review the values and sources shown and tell us which is correct, or provide a correction. Please give the explanation you want included in this report.",
+    "reader_missing": "Only one reading found investor help requested. Can you confirm it from the source shown, or provide the correct information?",
+    "uncertain": "We could not read or verify investor help requested reliably. Please confirm the information and its dates, or upload a clearer document.",
+    "period": "The available investor help requested does not clearly match this request. Please provide information for {start} through {end}.",
+    "clarify": "Please review investor help requested and provide the correct information for this report. Use your own explanation; you may explicitly say none for risks or requests for help."
+  }
+}

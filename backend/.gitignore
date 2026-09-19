@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+*credentials*.json
+storage/
+*.db
+__pycache__/
+.venv/
