@@ -1,0 +1,120 @@
+{
+  "scope": "Fixture-specific text-preservation checks only. No LLM extraction or follow-up generation tested.",
+  "cases": [
+    {
+      "case": "missing",
+      "methods": {
+        "direct": {
+          "seconds": 0.0,
+          "page_count": 1,
+          "spot_checks": [
+            {
+              "check": "Revenue and comparison preserved",
+              "matched": true
+            },
+            {
+              "check": "Loss values and signs preserved",
+              "matched": true
+            }
+          ]
+        },
+        "ocr": {
+          "seconds": 1.61,
+          "page_count": 1,
+          "spot_checks": [
+            {
+              "check": "Revenue and comparison preserved",
+              "matched": true
+            },
+            {
+              "check": "Loss values and signs preserved",
+              "matched": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "conflict",
+      "methods": {
+        "direct": {
+          "seconds": 0.01,
+          "page_count": 5,
+          "spot_checks": [
+            {
+              "check": "Statement cash preserved",
+              "matched": true
+            },
+            {
+              "check": "Different cash in note preserved",
+              "matched": true
+            },
+            {
+              "check": "Ambiguous revenue preserved without scaling",
+              "matched": true
+            }
+          ]
+        },
+        "ocr": {
+          "seconds": 6.93,
+          "page_count": 5,
+          "spot_checks": [
+            {
+              "check": "Statement cash preserved",
+              "matched": true
+            },
+            {
+              "check": "Different cash in note preserved",
+              "matched": true
+            },
+            {
+              "check": "Ambiguous revenue preserved without scaling",
+              "matched": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "wrong_period",
+      "methods": {
+        "direct": {
+          "seconds": 0.0,
+          "page_count": 1,
+          "spot_checks": [
+            {
+              "check": "2025 measurement period preserved",
+              "matched": true
+            },
+            {
+              "check": "Annual revenue preserved",
+              "matched": true
+            },
+            {
+              "check": "Dated annual cash preserved",
+              "matched": true
+            }
+          ]
+        },
+        "ocr": {
+          "seconds": 0.72,
+          "page_count": 1,
+          "spot_checks": [
+            {
+              "check": "2025 measurement period preserved",
+              "matched": true
+            },
+            {
+              "check": "Annual revenue preserved",
+              "matched": true
+            },
+            {
+              "check": "Dated annual cash preserved",
+              "matched": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "case": "missing",
+  "method": "ocr",
+  "seconds": 1.61,
+  "documents": [
+    {
+      "file": "02_income_only_missing_context.pdf",
+      "pages": [
+        {
+          "page": 1,
+          "method": "tesseract_ocr",
+          "text": "NEMO TEST DATA/ FICTIONAL COMPANY\n\nIncome statement\n\nNemo Demo CareFlow Co. | Healthcare care-coordination software\n\n \n\nUnaudited management accounts. Currency: USD. All amounts in whole dollars.\n\nEach column represents one calendar month; parentheses indicate negative amounts.\n\nTaman) Aug 2026 Jul 2026\nSubscription revenue 100,000 90,000\nImplementation revenue 20,000 10,000\nTotal revenue 120,000 100,000\nCost of revenue 36,000 30,000\nGross profit 84,000 70,000\nResearch and development 70,000 65,000\nSales and marketing 40,000 35,000\nGeneral and administrative 30,000 30,000\nTotal operating expenses 140,000 130,000\nOperating loss (56,000) (60,000)\nInterest and income tax expense 0 0\nNet loss (56,000) (60,000)\n\nAugust reporting period: August 1-31, 2026. July comparison: July 1-31, 2026.\n\nAugust general and administrative expense includes 4,000 depreciation.\n\nSynthetic, unaudited demo data. No affiliation with TGH or any actual company. 1\n\f"
+        }
+      ]
+    }
+  ]
+}

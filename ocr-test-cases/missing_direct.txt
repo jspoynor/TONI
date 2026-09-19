@@ -1,0 +1,66 @@
+=== 02_income_only_missing_context.pdf / PAGE 1 / embedded_text ===
+NEMO TEST DATA / FICTIONAL COMPANY
+Income statement
+
+Nemo Demo CareFlow Co. | Healthcare care-coordination software
+
+
+
+
+Unaudited management accounts. Currency: USD. All amounts in whole dollars.
+
+Each column represents one calendar month; parentheses indicate negative amounts.
+
+
+
+  Line item                                                                                   Aug 2026                      Jul 2026
+
+  Subscription revenue                                                                          100,000                       90,000
+
+  Implementation revenue                                                                          20,000                      10,000
+
+  Total revenue                                                                                 120,000                      100,000
+
+  Cost of revenue                                                                                 36,000                      30,000
+
+  Gross profit                                                                                    84,000                      70,000
+
+  Research and development                                                                        70,000                      65,000
+
+  Sales and marketing                                                                             40,000                      35,000
+
+  General and administrative                                                                      30,000                      30,000
+
+  Total operating expenses                                                                      140,000                      130,000
+
+  Operating loss                                                                                (56,000)                    (60,000)
+
+  Interest and income tax expense                                                                       0                            0
+
+  Net loss                                                                                      (56,000)                    (60,000)
+
+
+August reporting period: August 1-31, 2026. July comparison: July 1-31, 2026.
+
+August general and administrative expense includes 4,000 depreciation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Synthetic, unaudited demo data. No affiliation with TGH or any actual company.                                                         1

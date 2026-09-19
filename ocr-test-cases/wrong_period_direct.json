@@ -1,0 +1,17 @@
+{
+  "case": "wrong_period",
+  "method": "direct",
+  "seconds": 0.0,
+  "documents": [
+    {
+      "file": "05_wrong_period.txt",
+      "pages": [
+        {
+          "page": 1,
+          "method": "plain_text",
+          "text": "FICTIONAL NEMO TEST DATA\nNemo Demo CareFlow Co.\nIncome statement summary\nYear ended December 31, 2025\nCurrency: USD. Whole dollars.\nRevenue: 900,000\nNet loss: (600,000)\nCash at December 31, 2025: 800,000\nThis document contains no August 2026 financial results.\n"
+        }
+      ]
+    }
+  ]
+}

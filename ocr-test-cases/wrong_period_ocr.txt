@@ -1,0 +1,19 @@
+=== 05_wrong_period.txt / PAGE 1 / tesseract_ocr ===
+FICTIONAL NEMO TEST DATA
+
+Nemo Demo CareFlow Co.
+
+Income statement summary
+
+Year ended December 31, 2025
+
+Currency: USD. Whole dollars.
+
+Revenue: 900,000
+
+Net loss: (600,000)
+
+Cash at December 31, 2025: 800,000
+
+This document contains no August 2026 financial results.
+
