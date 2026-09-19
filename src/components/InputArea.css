@@ -1,0 +1,151 @@
+.input-area {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 24px 20px;
+  box-sizing: border-box;
+}
+
+.input-area-inner {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.attachment-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.attachment-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 220px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 8px 4px 4px;
+}
+
+.attachment-chip-thumbnail {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.attachment-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text-h);
+  }
+}
+
+.input-area-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 8px 8px 14px;
+}
+
+.input-attach-button,
+.input-send-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.input-attach-button {
+  background: transparent;
+  color: var(--text);
+
+  &:hover:not(:disabled) {
+    background: var(--surface-hover);
+    color: var(--text-h);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.input-file-hidden {
+  display: none;
+}
+
+.input-textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text-h);
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 6px 0;
+
+  &::placeholder {
+    color: var(--text);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.input-send-button {
+  background: var(--accent);
+  color: var(--bg);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--surface-hover);
+    color: var(--text);
+    opacity: 0.6;
+  }
+}

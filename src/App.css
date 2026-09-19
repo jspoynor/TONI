@@ -9,10 +9,22 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
   overflow: hidden;
   color: var(--text);
   position: relative;
+}
+
+/* Holds the EmptyState/MessageList swap. Takes up all the space `.main-panel`
+   doesn't give to the input area, so MessageList's `height: 100%` resolves
+   against a definite size and scrolls internally; `justify-content: center`
+   here is what keeps EmptyState's greeting centered (EmptyState has no
+   height of its own to fill). */
+.main-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mobile-topbar {
