@@ -1,0 +1,116 @@
+.message-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px 24px 24px;
+  box-sizing: border-box;
+}
+
+.message {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.message--user {
+  align-items: flex-end;
+}
+
+.message--assistant {
+  align-items: flex-start;
+}
+
+.message-content {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 155%;
+  color: var(--text-h);
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  & p {
+    margin: 0 0 12px;
+  }
+
+  & ul,
+  & ol {
+    margin: 0 0 12px;
+    padding-left: 24px;
+  }
+
+  & a {
+    color: var(--accent);
+  }
+
+  & pre {
+    margin: 0 0 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--code-bg);
+    border: 1px solid var(--border-subtle);
+    overflow-x: auto;
+
+    & code {
+      display: block;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-size: 14px;
+      line-height: 145%;
+      white-space: pre;
+    }
+  }
+
+  & table {
+    border-collapse: collapse;
+    margin: 0 0 12px;
+  }
+
+  & th,
+  & td {
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+  }
+}
+
+.message--user .message-content {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: 80%;
+}
+
+.message-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.message-attachment-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+}

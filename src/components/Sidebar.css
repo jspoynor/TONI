@@ -1,0 +1,236 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+  min-width: 272px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px 12px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+    transform: translateX(-100%);
+    transition: transform 200ms ease;
+  }
+}
+
+.sidebar--open {
+  @media (max-width: 1024px) {
+    transform: translateX(0);
+  }
+}
+
+.sidebar-scrim {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: var(--overlay-bg);
+  }
+}
+
+.sidebar-wordmark {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.28px;
+  color: var(--text-h);
+  margin: 4px 8px 20px;
+  text-align: left;
+}
+
+.sidebar-new-chat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--text-h);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+}
+
+.sidebar-conversations {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 16px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.sidebar-conversation {
+  display: block;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text-h);
+  }
+}
+
+.sidebar-conversation--active {
+  background: var(--accent-bg);
+  border-left: 2px solid var(--accent);
+  color: var(--text-h);
+
+  &:hover {
+    background: var(--accent-bg);
+  }
+}
+
+.sidebar-folder {
+  margin-bottom: 6px;
+}
+
+.sidebar-folder-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-left: 2px solid transparent;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text-h);
+  }
+}
+
+.sidebar-folder-header--active {
+  background: var(--accent-bg);
+  border-left: 2px solid var(--accent);
+  color: var(--text-h);
+
+  &:hover {
+    background: var(--accent-bg);
+  }
+}
+
+.sidebar-folder-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-folder .sidebar-conversation {
+  padding-left: 26px;
+}
+
+.sidebar-folder-new {
+  padding: 0 0 4px;
+}
+
+.sidebar-folder-new-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text-h);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  outline: none;
+
+  &:focus {
+    border-color: var(--accent-border);
+    box-shadow: 0 0 0 2px var(--accent-bg);
+  }
+}
+
+.sidebar-folder-new-chat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px 6px 26px;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text-h);
+  }
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding: 10px 8px 4px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sidebar-user-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.sidebar-user-name {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+}

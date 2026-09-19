@@ -1,0 +1,20 @@
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.empty-state-greeting {
+  font-family: var(--heading);
+  font-weight: 500;
+  font-size: 36px;
+  letter-spacing: -0.5px;
+  color: var(--text-h);
+  margin: 0;
+
+  @media (max-width: 1024px) {
+    font-size: 28px;
+  }
+}
