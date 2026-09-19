@@ -1,0 +1,108 @@
+.question-prompt {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-family: var(--sans);
+}
+
+.question-prompt-candidates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.question-prompt-candidate-chip {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-border);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.question-prompt-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-h);
+}
+
+.question-prompt-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.question-prompt-field {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.question-prompt-field--narrow {
+  flex: 1 1 120px;
+}
+
+.question-prompt-field input,
+.question-prompt-field textarea {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  resize: vertical;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.question-prompt-submit {
+  align-self: flex-end;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--surface-hover);
+    color: var(--text);
+    opacity: 0.6;
+  }
+}
