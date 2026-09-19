@@ -1,4 +1,4 @@
-import type { Attachment, ChatMessage, Conversation } from '../types'
+import type { Attachment, ChatMessage, Conversation, Folder } from '../types'
 
 /**
  * `Attachment.file` holds a `File`, which cannot survive a round trip through
@@ -89,6 +89,44 @@ function generateId(): string {
 }
 
 /**
+ * Derives the folders storage key from a page's conversations storage key
+ * (e.g. `toni:conversations` -> `toni:folders`), keeping `ChatPageConfig` to
+ * a single `storageKey` field rather than adding a parallel one for folders.
+ */
+function foldersKey(storageKey: string): string {
+  return `${storageKey.split(':')[0]}:folders`
+}
+
+function readFolders(storageKey: string): Folder[] {
+  let raw: string | null
+  try {
+    raw = localStorage.getItem(foldersKey(storageKey))
+  } catch {
+    return []
+  }
+
+  if (!raw) return []
+
+  try {
+    const parsed = JSON.parse(raw) as Folder[]
+    if (!Array.isArray(parsed)) return []
+
+    return parsed
+  } catch {
+    return []
+  }
+}
+
+function writeFolders(storageKey: string, folders: Folder[]): void {
+  try {
+    localStorage.setItem(foldersKey(storageKey), JSON.stringify(folders))
+  } catch {
+    // Storage may be unavailable (private browsing, quota exceeded, etc.).
+    // Swallow the error so save failures never crash the app.
+  }
+}
+
+/**
  * Derives a sidebar title from the first user message, matching Claude's own
  * convention of a short, truncated snippet of the opening message.
  */
@@ -173,4 +211,51 @@ export function appendMessage(
 /** Generates a unique id suitable for a new `ChatMessage`. */
 export function createMessageId(): string {
   return generateId()
+}
+
+/** Returns all folders for a page, newest-created first. */
+export function listFolders(storageKey: string): Folder[] {
+  return readFolders(storageKey).sort((a, b) => b.createdAt - a.createdAt)
+}
+
+/**
+ * Creates and persists a new folder with the given (trimmed) name. New
+ * folders default to `collapsed: false` (expanded) per spec.
+ */
+export function createFolder(storageKey: string, name: string): Folder {
+  const folder: Folder = {
+    id: generateId(),
+    name: name.trim(),
+    createdAt: Date.now(),
+    collapsed: false,
+  }
+
+  const folders = readFolders(storageKey)
+  folders.push(folder)
+  writeFolders(storageKey, folders)
+
+  return folder
+}
+
+/**
+ * Updates and persists a folder's `collapsed` field. Throws if `folderId`
+ * doesn't match an existing folder.
+ */
+export function setFolderCollapsed(
+  storageKey: string,
+  folderId: string,
+  collapsed: boolean,
+): Folder {
+  const folders = readFolders(storageKey)
+  const index = folders.findIndex((f) => f.id === folderId)
+
+  if (index === -1) {
+    throw new Error(`Folder not found: ${folderId}`)
+  }
+
+  const updated: Folder = { ...folders[index], collapsed }
+  folders[index] = updated
+  writeFolders(storageKey, folders)
+
+  return updated
 }
