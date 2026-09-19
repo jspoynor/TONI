@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Menu } from 'lucide-react'
 import Sidebar from './components/Sidebar'
 import { listConversations } from './lib/conversationStore'
 import type { Conversation } from './types'
@@ -9,6 +10,9 @@ function App() {
   const [activeConversationId, setActiveConversationId] = useState<
     string | null
   >(null)
+  // Only meaningful below the mobile breakpoint — the Sidebar ignores it
+  // entirely above that via CSS media query (see Sidebar.css).
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false)
 
   // Loads the conversation list on mount. Future tasks that mutate the store
   // (e.g. sending the first message of a new conversation) should call
@@ -27,8 +31,20 @@ function App() {
         activeConversationId={activeConversationId}
         onSelectConversation={setActiveConversationId}
         onNewChat={() => setActiveConversationId(null)}
+        isOpen={isMobileDrawerOpen}
+        onClose={() => setIsMobileDrawerOpen(false)}
       />
       <main className="main-panel">
+        <header className="mobile-topbar">
+          <button
+            type="button"
+            className="mobile-menu-toggle"
+            aria-label="Open sidebar"
+            onClick={() => setIsMobileDrawerOpen(true)}
+          >
+            <Menu size={22} strokeWidth={1.75} aria-hidden="true" />
+          </button>
+        </header>
         <p>Main panel — Task 7 builds this</p>
       </main>
     </div>
