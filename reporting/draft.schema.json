@@ -1,0 +1,349 @@
+{
+  "$defs": {
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "company_id": {
+          "minLength": 1,
+          "title": "Company Id",
+          "type": "string"
+        },
+        "request_id": {
+          "minLength": 1,
+          "title": "Request Id",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "enum": [
+                "base_units",
+                "thousands",
+                "millions"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "period_start": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period Start"
+        },
+        "period_end": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period End"
+        },
+        "as_of_date": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "As Of Date"
+        },
+        "definition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Definition"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        }
+      },
+      "required": [
+        "id",
+        "company_id",
+        "request_id",
+        "value",
+        "source"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "FieldEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "candidates": {
+          "items": {
+            "$ref": "#/$defs/Candidate"
+          },
+          "title": "Candidates",
+          "type": "array"
+        },
+        "selected_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Selected Id"
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Source"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "FieldEvidence",
+      "type": "object"
+    },
+    "Request": {
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "minLength": 1,
+          "title": "Request Id",
+          "type": "string"
+        },
+        "company_id": {
+          "minLength": 1,
+          "title": "Company Id",
+          "type": "string"
+        },
+        "frequency": {
+          "enum": [
+            "monthly",
+            "quarterly"
+          ],
+          "title": "Frequency",
+          "type": "string"
+        },
+        "period_start": {
+          "format": "date",
+          "title": "Period Start",
+          "type": "string"
+        },
+        "period_end": {
+          "format": "date",
+          "title": "Period End",
+          "type": "string"
+        },
+        "due_date": {
+          "format": "date",
+          "title": "Due Date",
+          "type": "string"
+        },
+        "currency": {
+          "pattern": "^[A-Z]{3}$",
+          "title": "Currency",
+          "type": "string"
+        },
+        "required_fields": {
+          "items": {
+            "enum": [
+              "revenue",
+              "cash_on_hand",
+              "arr",
+              "management_context",
+              "risks",
+              "help_requested"
+            ],
+            "type": "string"
+          },
+          "title": "Required Fields",
+          "type": "array"
+        },
+        "arr_applicable": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Arr Applicable"
+        },
+        "max_questions": {
+          "default": 3,
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Max Questions",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "request_id",
+        "company_id",
+        "frequency",
+        "period_start",
+        "period_end",
+        "due_date",
+        "currency"
+      ],
+      "title": "Request",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "document",
+            "company_answer"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "File"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "message_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message Id"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "uncertain": {
+          "default": false,
+          "title": "Uncertain",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "quote"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "$ref": "#/$defs/Request"
+    },
+    "fields": {
+      "additionalProperties": {
+        "$ref": "#/$defs/FieldEvidence"
+      },
+      "propertyNames": {
+        "enum": [
+          "revenue",
+          "cash_on_hand",
+          "arr",
+          "management_context",
+          "risks",
+          "help_requested"
+        ]
+      },
+      "title": "Fields",
+      "type": "object"
+    }
+  },
+  "required": [
+    "request"
+  ],
+  "title": "Draft",
+  "type": "object"
+}
