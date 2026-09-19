@@ -7,7 +7,7 @@ import './InputArea.css'
 
 export interface InputAreaProps {
   onSend: (message: ChatMessage) => void
-  /** True while a reply is streaming, to prevent double-submit. */
+  /** True while a reply is streaming for the currently active conversation, to prevent double-submit. */
   disabled: boolean
 }
 

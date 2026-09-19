@@ -22,13 +22,21 @@ function App() {
   // Only meaningful below the mobile breakpoint — the Sidebar ignores it
   // entirely above that via CSS media query (see Sidebar.css).
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false)
-  // The in-progress assistant reply while a mock stream is running. Kept out
-  // of the persisted store until it's complete (see `handleSend`) — this is
+  // In-progress assistant replies for mock streams currently running,
+  // keyed by the id of the conversation each one belongs to. Kept out of the
+  // persisted store until each is complete (see `handleSend`) — this is
   // ephemeral UI state, appended to the visible message list but written to
-  // `localStorage` only once, as a single final message.
-  const [streamingMessage, setStreamingMessage] = useState<ChatMessage | null>(
-    null,
-  )
+  // `localStorage` only once, as a single final message. Keying by
+  // conversationId (rather than a single bare `ChatMessage`) lets
+  // `displayedMessages` only show a reply while its own conversation is the
+  // active one — switching away mid-stream just hides it (it keeps
+  // streaming and persists correctly in the background) instead of letting
+  // it bleed into whatever conversation is currently on screen. A map (not a
+  // single slot) also means two different conversations can stream
+  // concurrently without one clobbering the other's in-progress state.
+  const [streamingReplies, setStreamingReplies] = useState<
+    Record<string, ChatMessage>
+  >({})
 
   // Loads the conversation list on mount. Future tasks that mutate the store
   // (e.g. sending the first message of a new conversation) should call
@@ -42,11 +50,18 @@ function App() {
     (conversation) => conversation.id === activeConversationId,
   )
 
-  // While a reply is streaming, render it as a trailing message appended to
-  // the real (persisted) list. MessageList stays entirely unaware that
-  // streaming is a concept — it just renders whatever array it's given.
-  const displayedMessages = streamingMessage
-    ? [...(activeConversation?.messages ?? []), streamingMessage]
+  // While a reply is streaming for the conversation currently on screen,
+  // render it as a trailing message appended to the real (persisted) list.
+  // MessageList stays entirely unaware that streaming is a concept — it just
+  // renders whatever array it's given. A stream in progress for some OTHER
+  // conversation (the user switched away mid-reply) is intentionally not
+  // shown here.
+  const activeStreamingMessage = activeConversationId
+    ? (streamingReplies[activeConversationId] ?? null)
+    : null
+
+  const displayedMessages = activeStreamingMessage
+    ? [...(activeConversation?.messages ?? []), activeStreamingMessage]
     : (activeConversation?.messages ?? [])
 
   useEffect(() => {
@@ -57,9 +72,12 @@ function App() {
   /**
    * Handles a submitted user message from `InputArea`. Creates a new
    * conversation on first send (or appends to the active one), then streams
-   * the mock assistant reply in as ephemeral `streamingMessage` state,
-   * persisting the final assistant message in one shot once the stream
-   * completes.
+   * the mock assistant reply in as ephemeral `streamingReplies` state keyed
+   * to this conversation's id, persisting the final assistant message in one
+   * shot once the stream completes. Captures `conversationId` in this
+   * closure so the stream keeps updating/persisting to the right
+   * conversation even if the user switches away (or sends a message in
+   * another conversation) before it finishes.
    */
   const handleSend = async (message: ChatMessage) => {
     let conversationId = activeConversationId
@@ -79,21 +97,22 @@ function App() {
     const assistantCreatedAt = Date.now()
     let assistantContent = ''
 
-    setStreamingMessage({
-      id: assistantId,
-      role: 'assistant',
-      content: '',
-      createdAt: assistantCreatedAt,
-    })
+    const setStreamingContent = (content: string) =>
+      setStreamingReplies((prev) => ({
+        ...prev,
+        [conversationId]: {
+          id: assistantId,
+          role: 'assistant',
+          content,
+          createdAt: assistantCreatedAt,
+        },
+      }))
+
+    setStreamingContent('')
 
     for await (const chunk of sendMessage(conversation.messages, attachments)) {
       assistantContent += chunk
-      setStreamingMessage({
-        id: assistantId,
-        role: 'assistant',
-        content: assistantContent,
-        createdAt: assistantCreatedAt,
-      })
+      setStreamingContent(assistantContent)
     }
 
     appendMessage(conversationId, {
@@ -103,7 +122,10 @@ function App() {
       createdAt: assistantCreatedAt,
     })
     refreshConversations()
-    setStreamingMessage(null)
+    setStreamingReplies((prev) => {
+      const { [conversationId]: _finished, ...rest } = prev
+      return rest
+    })
   }
 
   return (
@@ -134,7 +156,7 @@ function App() {
             <MessageList messages={displayedMessages} />
           )}
         </div>
-        <InputArea onSend={handleSend} disabled={streamingMessage !== null} />
+        <InputArea onSend={handleSend} disabled={activeStreamingMessage !== null} />
       </main>
     </div>
   )
