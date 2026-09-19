@@ -27,7 +27,7 @@ These remain unconfirmed until the company reviews them. See developer/expected_
 
 ## Work split
 
-- Jackson: build the upload/chat/report preview against developer/blank_report.json and the expected JSON fixtures. The first file upload should produce the draft state, not a submitted report.
+- Jackson: build the upload/chat/report preview against ../reporting/draft.schema.json and ../reporting/examples (the developer fixtures are the earlier contract). The first file upload should produce the draft state, not a submitted report.
 - You: test page-text extraction, compare results with the answer keys, and later connect the extraction/follow-up instructions to the OpenAI API.
 - Together: confirm field names, source display, missing/conflicting states and the explicit submit action before integration.
 
@@ -40,7 +40,7 @@ python developer/extract_local.py uploads/01_complete_monthly.pdf --output compl
 python developer/extract_local.py uploads/03_scanned_monthly.pdf --output scanned_text.json
 ```
 
-The scanned case additionally requires the system commands `pdftoppm` (Poppler) and `tesseract`, plus English OCR language data. This environment has Poppler but not Tesseract. Native text extraction was tested; the OCR path is supplied but has NOT been executed here. It will give a clear dependency error until Tesseract is installed.
+The scanned case additionally requires the system commands `pdftoppm` (Poppler) and `tesseract`, plus English OCR language data. Both native text extraction and Tesseract OCR have now been executed. See ../ocr-demo and ../ocr-test-cases for measured outputs and limitations. Install these commands on your own machine before rerunning scanned inputs.
 
 The starter routes pages with very little embedded text to OCR. This simple heuristic will not detect every damaged text layer or mixed text/image page. Manually review those cases. Tesseract text is not a reliable table parser; preserve page boundaries and check row/column alignment, parentheses, currency and units before relying on numbers. The later AI step still requires an answer-key evaluation and human review.
 
