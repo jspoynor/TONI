@@ -1,16 +1,15 @@
 import App from '../App'
 import type { ChatPageConfig } from '../types'
 
-// TODO(task 5): replace with the real Anne/pink/statements config.
 const config: ChatPageConfig = {
-  name: 'Toni',
-  storageKey: 'toni:conversations',
-  accent: '#c084fc',
-  accentBg: 'rgba(192, 132, 252, 0.15)',
-  accentBorder: 'rgba(192, 132, 252, 0.5)',
-  emptyStateGreeting: 'What can I help you with?',
+  name: 'Anne',
+  storageKey: 'anne:conversations',
+  accent: '#f472b6',
+  accentBg: 'rgba(244, 114, 182, 0.15)',
+  accentBorder: 'rgba(244, 114, 182, 0.5)',
+  emptyStateGreeting: 'Upload your financial statements to get started',
   mockReplyText:
-    "No backend is connected yet — this is a simulated reply from Toni's mock response service. Once a real backend is wired up, responses will stream in through this same interface.",
+    "No backend is connected yet — this is a simulated reply from Anne's mock response service. Once a real backend is wired up, you'll be able to upload financial statements and get real answers here.",
 }
 
 function CompanyChat() {

@@ -1,8 +1,6 @@
 import App from '../App'
 import type { ChatPageConfig } from '../types'
 
-// TODO(task 5): replace with the real Toni/VC config once page wrappers own
-// their persona's config for real.
 const config: ChatPageConfig = {
   name: 'Toni',
   storageKey: 'toni:conversations',
