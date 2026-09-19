@@ -8,11 +8,15 @@ import InputArea from './components/InputArea'
 import {
   appendMessage,
   createConversation,
+  createFolder,
   createMessageId,
   listConversations,
+  listFolders,
+  migrateFolderlessConversations,
+  setFolderCollapsed,
 } from './lib/conversationStore'
 import { sendMessage } from './lib/sendMessage'
-import type { ChatMessage, ChatPageConfig, Conversation } from './types'
+import type { ChatMessage, ChatPageConfig, Conversation, Folder } from './types'
 import './App.css'
 
 interface AppProps {
@@ -21,9 +25,15 @@ interface AppProps {
 
 function App({ config }: AppProps) {
   const [conversations, setConversations] = useState<Conversation[]>([])
+  const [folders, setFolders] = useState<Folder[]>([])
   const [activeConversationId, setActiveConversationId] = useState<
     string | null
   >(null)
+  // Tracks which folder a pending (unsent) draft belongs to, i.e. while
+  // `activeConversationId === null`. Set when the user opens a draft via
+  // "New Folder" or a per-folder "new chat" button, consumed (and reset) once
+  // `handleSend` turns that draft into a real, persisted conversation.
+  const [pendingFolderId, setPendingFolderId] = useState<string | null>(null)
   // Only meaningful below the mobile breakpoint — the Sidebar ignores it
   // entirely above that via CSS media query (see Sidebar.css).
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false)
@@ -49,6 +59,10 @@ function App({ config }: AppProps) {
   const refreshConversations = () =>
     setConversations(listConversations(config.storageKey))
 
+  // Mirrors `refreshConversations` for folders. A harmless no-op for pages
+  // with folders disabled (Anne) — her folders key just stays empty.
+  const refreshFolders = () => setFolders(listFolders(config.storageKey))
+
   // `listConversations()` already returns full `Conversation` objects
   // (including `messages`), so the active conversation's messages can be
   // derived directly without a separate store read.
@@ -70,8 +84,27 @@ function App({ config }: AppProps) {
     ? [...(activeConversation?.messages ?? []), activeStreamingMessage]
     : (activeConversation?.messages ?? [])
 
+  // The active folder: whichever folder contains the active conversation, or
+  // (while a draft is open) whichever folder the pending draft belongs to.
+  // Recomputed each render rather than tracked as its own state, since it's
+  // fully derived from `activeConversationId`/`pendingFolderId`/`conversations`.
+  const activeFolderId: string | null =
+    activeConversationId === null
+      ? pendingFolderId
+      : (conversations.find(
+          (conversation) => conversation.id === activeConversationId,
+        )?.folderId ?? null)
+
   useEffect(() => {
+    // Legacy Toni conversations may predate folders; migrate them into a
+    // "General" folder before the first read so migrated data shows up in
+    // the initial render. Anne never runs this (folders stay unsupported for
+    // her data under any circumstance).
+    if (config.foldersEnabled) {
+      migrateFolderlessConversations(config.storageKey)
+    }
     refreshConversations()
+    refreshFolders()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -94,9 +127,14 @@ function App({ config }: AppProps) {
     let conversation: Conversation
 
     if (conversationId === null) {
-      conversation = createConversation(config.storageKey, message)
+      conversation = createConversation(
+        config.storageKey,
+        message,
+        pendingFolderId ?? undefined,
+      )
       conversationId = conversation.id
       setActiveConversationId(conversationId)
+      setPendingFolderId(null)
     } else {
       conversation = appendMessage(config.storageKey, conversationId, message)
     }
@@ -142,6 +180,30 @@ function App({ config }: AppProps) {
     })
   }
 
+  // Creates and persists a new folder, then opens a draft scoped to it —
+  // mirrors the pre-folders "New Chat" behavior (`activeConversationId` goes
+  // to `null`), just also tracking which folder the draft belongs to.
+  const handleCreateFolder = (name: string) => {
+    const folder = createFolder(config.storageKey, name)
+    refreshFolders()
+    setActiveConversationId(null)
+    setPendingFolderId(folder.id)
+  }
+
+  // The per-folder "new chat" button: identical shape to the old top-level
+  // "New Chat" button, just scoped to a specific folder.
+  const handleNewChatInFolder = (folderId: string) => {
+    setActiveConversationId(null)
+    setPendingFolderId(folderId)
+  }
+
+  const handleToggleFolderCollapse = (folderId: string) => {
+    const folder = folders.find((f) => f.id === folderId)
+    if (!folder) return
+    setFolderCollapsed(config.storageKey, folderId, !folder.collapsed)
+    refreshFolders()
+  }
+
   return (
     <div
       id="app"
@@ -161,6 +223,12 @@ function App({ config }: AppProps) {
         onNewChat={() => setActiveConversationId(null)}
         isOpen={isMobileDrawerOpen}
         onClose={() => setIsMobileDrawerOpen(false)}
+        foldersEnabled={config.foldersEnabled}
+        folders={folders}
+        activeFolderId={activeFolderId}
+        onCreateFolder={handleCreateFolder}
+        onNewChatInFolder={handleNewChatInFolder}
+        onToggleFolderCollapse={handleToggleFolderCollapse}
       />
       <main className="main-panel">
         <header className="mobile-topbar">

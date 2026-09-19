@@ -162,6 +162,7 @@ export function getConversation(
 export function createConversation(
   storageKey: string,
   firstMessage: ChatMessage,
+  folderId?: string,
 ): Conversation {
   const now = Date.now()
   const conversation: Conversation = {
@@ -170,6 +171,7 @@ export function createConversation(
     messages: [firstMessage],
     createdAt: now,
     updatedAt: now,
+    ...(folderId !== undefined ? { folderId } : {}),
   }
 
   const conversations = readStore(storageKey)
