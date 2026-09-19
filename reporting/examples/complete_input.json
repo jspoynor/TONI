@@ -1,0 +1,155 @@
+{
+  "request": {
+    "company_id": "demo-careflow",
+    "frequency": "monthly",
+    "period_start": "2026-08-01",
+    "period_end": "2026-08-31",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "required_fields": [
+      "revenue",
+      "cash_on_hand",
+      "arr",
+      "management_context",
+      "risks",
+      "help_requested"
+    ],
+    "arr_applicable": true,
+    "request_id": "demo-careflow-2026-08",
+    "max_questions": 3
+  },
+  "fields": {
+    "revenue": {
+      "candidates": [
+        {
+          "id": "revenue-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 120000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 1,
+            "quote": "Total revenue, Aug 2026"
+          }
+        }
+      ]
+    },
+    "cash_on_hand": {
+      "candidates": [
+        {
+          "id": "cash_on_hand-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 420000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": null,
+          "period_end": null,
+          "as_of_date": "2026-08-31",
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 2,
+            "quote": "Cash and cash equivalents, Aug 31"
+          }
+        }
+      ]
+    },
+    "arr": {
+      "candidates": [
+        {
+          "id": "arr-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 1200000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": null,
+          "period_end": null,
+          "as_of_date": "2026-08-31",
+          "definition": "Management-reported live recurring MRR times 12; excludes implementation fees, unsigned pipeline and contracts not yet live.",
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 4,
+            "quote": "Management-reported ARR"
+          }
+        }
+      ]
+    },
+    "management_context": {
+      "candidates": [
+        {
+          "id": "management_context-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": "Revenue increased USD 20,000 versus July: USD 10,000 more recurring subscription revenue and USD 10,000 more one-time implementation revenue from a new hospital deployment.",
+          "currency": null,
+          "unit": null,
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 4,
+            "quote": "management_context"
+          }
+        }
+      ]
+    },
+    "risks": {
+      "candidates": [
+        {
+          "id": "risks-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": "A customer contributing USD 30,000 MRR renews in November 2026; renewal is unsigned. Proposal planned by October 1.",
+          "currency": null,
+          "unit": null,
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 4,
+            "quote": "risks"
+          }
+        }
+      ]
+    },
+    "help_requested": {
+      "candidates": [
+        {
+          "id": "help_requested-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": "Introductions to two hospital operations leaders and a referral for a fractional finance lead.",
+          "currency": null,
+          "unit": null,
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "01_complete_monthly.pdf",
+            "page": 4,
+            "quote": "help_requested"
+          }
+        }
+      ]
+    }
+  }
+}

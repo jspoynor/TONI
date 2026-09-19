@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "request": {
+    "request_id": "demo-careflow-2026-08",
+    "company_id": "demo-careflow",
+    "frequency": "monthly",
+    "period_start": "2026-08-01",
+    "period_end": "2026-08-31",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "required_fields": [
+      "revenue",
+      "cash_on_hand",
+      "arr",
+      "management_context",
+      "risks",
+      "help_requested"
+    ],
+    "arr_applicable": true,
+    "max_questions": 3
+  },
+  "status": "needs_information",
+  "fields": {
+    "revenue": {
+      "required": true,
+      "status": "ready",
+      "value": 120000,
+      "issues": [],
+      "source": {
+        "kind": "document",
+        "file": "02_income_only_missing_context.pdf",
+        "page": 1,
+        "message_id": null,
+        "quote": "Total revenue, Aug 2026",
+        "uncertain": false
+      },
+      "candidates": [
+        {
+          "id": "revenue-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 120000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "02_income_only_missing_context.pdf",
+            "page": 1,
+            "message_id": null,
+            "quote": "Total revenue, Aug 2026",
+            "uncertain": false
+          }
+        }
+      ],
+      "resolution": null,
+      "confirmed": false
+    },
+    "cash_on_hand": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "arr": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "management_context": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "risks": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "help_requested": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    }
+  },
+  "questions": [
+    {
+      "field": "cash_on_hand",
+      "priority": 2,
+      "question": "What was your cash balance in USD as of 2026-08-31?"
+    },
+    {
+      "field": "arr",
+      "priority": 2,
+      "question": "What was your ARR in USD as of 2026-08-31, and how do you define it? If not applicable, please say so."
+    },
+    {
+      "field": "management_context",
+      "priority": 3,
+      "question": "What changed during this reporting period, and what explains those changes?"
+    }
+  ],
+  "remaining_question_count": 2,
+  "ready_for_review": false,
+  "confirmed": false
+}

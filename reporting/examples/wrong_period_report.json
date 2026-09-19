@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "request": {
+    "request_id": "demo-careflow-2026-08",
+    "company_id": "demo-careflow",
+    "frequency": "monthly",
+    "period_start": "2026-08-01",
+    "period_end": "2026-08-31",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "required_fields": [
+      "revenue",
+      "cash_on_hand",
+      "arr",
+      "management_context",
+      "risks",
+      "help_requested"
+    ],
+    "arr_applicable": true,
+    "max_questions": 3
+  },
+  "status": "needs_information",
+  "fields": {
+    "revenue": {
+      "required": true,
+      "status": "needs_clarification",
+      "value": null,
+      "issues": [
+        "reporting_period_missing_or_wrong"
+      ],
+      "source": null,
+      "candidates": [
+        {
+          "id": "revenue-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 900000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": "2025-01-01",
+          "period_end": "2025-12-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "05_wrong_period.txt",
+            "page": 1,
+            "message_id": null,
+            "quote": "Revenue: 900,000",
+            "uncertain": false
+          }
+        }
+      ],
+      "resolution": null,
+      "confirmed": false
+    },
+    "cash_on_hand": {
+      "required": true,
+      "status": "needs_clarification",
+      "value": null,
+      "issues": [
+        "as_of_date_missing_or_wrong"
+      ],
+      "source": null,
+      "candidates": [
+        {
+          "id": "cash_on_hand-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 800000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": null,
+          "period_end": null,
+          "as_of_date": "2025-12-31",
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "05_wrong_period.txt",
+            "page": 1,
+            "message_id": null,
+            "quote": "Cash at December 31, 2025: 800,000",
+            "uncertain": false
+          }
+        }
+      ],
+      "resolution": null,
+      "confirmed": false
+    },
+    "arr": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "management_context": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "risks": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    },
+    "help_requested": {
+      "required": true,
+      "status": "missing",
+      "value": null,
+      "issues": [
+        "missing"
+      ],
+      "source": null,
+      "candidates": [],
+      "resolution": null,
+      "confirmed": false
+    }
+  },
+  "questions": [
+    {
+      "field": "revenue",
+      "priority": 1,
+      "question": "Please clarify revenue: reporting period missing or wrong."
+    },
+    {
+      "field": "cash_on_hand",
+      "priority": 1,
+      "question": "Please clarify cash on hand: as of date missing or wrong."
+    },
+    {
+      "field": "arr",
+      "priority": 2,
+      "question": "What was your ARR in USD as of 2026-08-31, and how do you define it? If not applicable, please say so."
+    }
+  ],
+  "remaining_question_count": 3,
+  "ready_for_review": false,
+  "confirmed": false
+}

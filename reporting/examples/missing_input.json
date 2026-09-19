@@ -1,0 +1,60 @@
+{
+  "request": {
+    "company_id": "demo-careflow",
+    "frequency": "monthly",
+    "period_start": "2026-08-01",
+    "period_end": "2026-08-31",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "required_fields": [
+      "revenue",
+      "cash_on_hand",
+      "arr",
+      "management_context",
+      "risks",
+      "help_requested"
+    ],
+    "arr_applicable": true,
+    "request_id": "demo-careflow-2026-08",
+    "max_questions": 3
+  },
+  "fields": {
+    "revenue": {
+      "candidates": [
+        {
+          "id": "revenue-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 120000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": "2026-08-01",
+          "period_end": "2026-08-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "02_income_only_missing_context.pdf",
+            "page": 1,
+            "quote": "Total revenue, Aug 2026"
+          }
+        }
+      ]
+    },
+    "cash_on_hand": {
+      "candidates": []
+    },
+    "arr": {
+      "candidates": []
+    },
+    "management_context": {
+      "candidates": []
+    },
+    "risks": {
+      "candidates": []
+    },
+    "help_requested": {
+      "candidates": []
+    }
+  }
+}

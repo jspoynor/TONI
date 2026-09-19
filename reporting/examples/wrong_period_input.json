@@ -1,0 +1,79 @@
+{
+  "request": {
+    "company_id": "demo-careflow",
+    "frequency": "monthly",
+    "period_start": "2026-08-01",
+    "period_end": "2026-08-31",
+    "due_date": "2026-09-15",
+    "currency": "USD",
+    "required_fields": [
+      "revenue",
+      "cash_on_hand",
+      "arr",
+      "management_context",
+      "risks",
+      "help_requested"
+    ],
+    "arr_applicable": true,
+    "request_id": "demo-careflow-2026-08",
+    "max_questions": 3
+  },
+  "fields": {
+    "revenue": {
+      "candidates": [
+        {
+          "id": "revenue-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 900000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": "2025-01-01",
+          "period_end": "2025-12-31",
+          "as_of_date": null,
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "05_wrong_period.txt",
+            "page": 1,
+            "quote": "Revenue: 900,000"
+          }
+        }
+      ]
+    },
+    "cash_on_hand": {
+      "candidates": [
+        {
+          "id": "cash_on_hand-document",
+          "company_id": "demo-careflow",
+          "request_id": "demo-careflow-2026-08",
+          "value": 800000,
+          "currency": "USD",
+          "unit": "base_units",
+          "period_start": null,
+          "period_end": null,
+          "as_of_date": "2025-12-31",
+          "definition": null,
+          "source": {
+            "kind": "document",
+            "file": "05_wrong_period.txt",
+            "page": 1,
+            "quote": "Cash at December 31, 2025: 800,000"
+          }
+        }
+      ]
+    },
+    "arr": {
+      "candidates": []
+    },
+    "management_context": {
+      "candidates": []
+    },
+    "risks": {
+      "candidates": []
+    },
+    "help_requested": {
+      "candidates": []
+    }
+  }
+}
