@@ -1,0 +1,12 @@
+{
+  "native": {
+    "elapsed_seconds": 0.01,
+    "pages": 4,
+    "characters": 7975
+  },
+  "ocr": {
+    "elapsed_seconds": 6.18,
+    "pages": 4,
+    "characters": 3833
+  }
+}

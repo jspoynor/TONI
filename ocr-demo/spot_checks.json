@@ -1,0 +1,115 @@
+{
+  "scope": "Eight selected numeric rows plus explicit ARR text presence. Not a whole-document accuracy score or model extraction evaluation.",
+  "rows": [
+    {
+      "page": 1,
+      "row": "Total revenue",
+      "expected": [
+        120000,
+        100000
+      ],
+      "recognized": [
+        120000,
+        100000
+      ],
+      "matched": true,
+      "ocr_line": "Total revenue 120,000 100,000"
+    },
+    {
+      "page": 1,
+      "row": "Net loss",
+      "expected": [
+        -56000,
+        -60000
+      ],
+      "recognized": [
+        -56000,
+        -60000
+      ],
+      "matched": true,
+      "ocr_line": "Net loss (56,000) (60,000)"
+    },
+    {
+      "page": 2,
+      "row": "Cash and cash equivalents",
+      "expected": [
+        420000,
+        500000
+      ],
+      "recognized": [
+        420000,
+        500000
+      ],
+      "matched": true,
+      "ocr_line": "Cash and cash equivalents 420,000 500,000"
+    },
+    {
+      "page": 2,
+      "row": "Total assets",
+      "expected": [
+        553000,
+        610000
+      ],
+      "recognized": [
+        553000,
+        610000
+      ],
+      "matched": true,
+      "ocr_line": "Total assets 553,000 610,000"
+    },
+    {
+      "page": 2,
+      "row": "Total liabilities and equity",
+      "expected": [
+        553000,
+        610000
+      ],
+      "recognized": [
+        553000,
+        610000
+      ],
+      "matched": true,
+      "ocr_line": "Total liabilities and equity 553,000 610,000"
+    },
+    {
+      "page": 3,
+      "row": "Net cash used in operating activities",
+      "expected": [
+        -70000
+      ],
+      "recognized": [
+        -70000
+      ],
+      "matched": true,
+      "ocr_line": "Net cash used in operating activities (70,000)"
+    },
+    {
+      "page": 3,
+      "row": "Net change in cash",
+      "expected": [
+        -80000
+      ],
+      "recognized": [
+        -80000
+      ],
+      "matched": true,
+      "ocr_line": "Net change in cash (80,000)"
+    },
+    {
+      "page": 3,
+      "row": "Ending cash",
+      "expected": [
+        420000
+      ],
+      "recognized": [
+        420000
+      ],
+      "matched": true,
+      "ocr_line": "Ending cash 420,000"
+    }
+  ],
+  "arr_text_present": true,
+  "header_issue": "Page 1 header Aug 2026 was recognized as PGT wy.); other colored table headers are also corrupted.",
+  "tesseract_version": "4.1.1",
+  "rasterization_dpi": 300
+}

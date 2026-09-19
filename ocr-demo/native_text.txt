@@ -1,0 +1,268 @@
+=== PAGE 1 / embedded_text ===
+NEMO TEST DATA / FICTIONAL COMPANY
+Income statement
+
+Nemo Demo CareFlow Co. | Healthcare care-coordination software
+
+
+
+
+Unaudited management accounts. Currency: USD. All amounts in whole dollars.
+
+Each column represents one calendar month; parentheses indicate negative amounts.
+
+
+
+  Line item                                                                                   Aug 2026                      Jul 2026
+
+  Subscription revenue                                                                          100,000                       90,000
+
+  Implementation revenue                                                                          20,000                      10,000
+
+  Total revenue                                                                                 120,000                      100,000
+
+  Cost of revenue                                                                                 36,000                      30,000
+
+  Gross profit                                                                                    84,000                      70,000
+
+  Research and development                                                                        70,000                      65,000
+
+  Sales and marketing                                                                             40,000                      35,000
+
+  General and administrative                                                                      30,000                      30,000
+
+  Total operating expenses                                                                      140,000                      130,000
+
+  Operating loss                                                                                (56,000)                    (60,000)
+
+  Interest and income tax expense                                                                       0                            0
+
+  Net loss                                                                                      (56,000)                    (60,000)
+
+
+August reporting period: August 1-31, 2026. July comparison: July 1-31, 2026.
+
+August general and administrative expense includes 4,000 depreciation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Synthetic, unaudited demo data. No affiliation with TGH or any actual company.                                                         1
+
+=== PAGE 2 / embedded_text ===
+NEMO TEST DATA / FICTIONAL COMPANY
+Balance sheet
+
+Nemo Demo CareFlow Co. | As of August 31 and July 31, 2026
+
+
+
+
+Currency: USD. All amounts in whole dollars. No restricted cash or debt.
+
+
+
+  Line item                                                                                      Aug 31                        Jul 31
+
+  Cash and cash equivalents                                                                     420,000                      500,000
+
+  Accounts receivable                                                                             75,000                      60,000
+
+  Prepaid expenses                                                                                12,000                      10,000
+
+  Property and equipment, net                                                                     46,000                      40,000
+
+  Total assets                                                                                  553,000                      610,000
+
+  Accounts payable                                                                                35,000                      30,000
+
+  Accrued expenses                                                                                23,000                      20,000
+
+  Deferred revenue                                                                                31,000                      40,000
+
+  Total liabilities                                                                               89,000                      90,000
+
+  Contributed capital                                                                         1,000,000                   1,000,000
+
+  Accumulated deficit                                                                          (536,000)                   (480,000)
+
+  Total equity                                                                                  464,000                      520,000
+
+  Total liabilities and equity                                                                  553,000                      610,000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Synthetic, unaudited demo data. No affiliation with TGH or any actual company.                                                         2
+
+=== PAGE 3 / embedded_text ===
+NEMO TEST DATA / FICTIONAL COMPANY
+Cash-flow statement
+
+Nemo Demo CareFlow Co. | August 1-31, 2026
+
+
+
+
+Currency: USD. All amounts in whole dollars. Indirect method; parentheses are outflows.
+
+
+
+  Line item                                                                                     Aug 2026
+
+  Net loss                                                                                        (56,000)
+
+  Depreciation                                                                                       4,000
+
+  Increase in accounts receivable                                                                 (15,000)
+
+  Increase in prepaid expenses                                                                     (2,000)
+
+  Increase in accounts payable                                                                       5,000
+
+  Increase in accrued expenses                                                                       3,000
+
+  Decrease in deferred revenue                                                                     (9,000)
+
+  Net cash used in operating activities                                                           (70,000)
+
+  Purchase of property and equipment                                                              (10,000)
+
+  Net cash used in investing activities                                                           (10,000)
+
+  Net cash from financing activities                                                                      0
+
+  Net change in cash                                                                              (80,000)
+
+  Beginning cash                                                                                  500,000
+
+  Ending cash                                                                                     420,000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Synthetic, unaudited demo data. No affiliation with TGH or any actual company.                                                           3
+
+=== PAGE 4 / embedded_text ===
+NEMO TEST DATA / FICTIONAL COMPANY
+Management update
+
+Nemo Demo CareFlow Co. | August 2026
+
+
+
+
+Business
+
+We sell care-coordination software subscriptions to hospital groups. These are company-level
+business metrics, not patient records.
+
+Recurring revenue
+
+At August 31, 2026, live recurring monthly subscription revenue is USD 100,000. Management-
+reported ARR is USD 1,200,000, defined as live recurring MRR times 12. This excludes
+implementation fees, unsigned pipeline, and contracts not yet live.
+
+What changed
+
+Revenue rose from USD 100,000 in July to USD 120,000 in August. A new hospital deployment added
+USD 10,000 of recurring subscription revenue and an additional USD 10,000 of one-time
+implementation revenue compared with July. The deployment went live August 1.
+
+Risks
+
+One customer representing USD 30,000 of live MRR renews in November 2026. The renewal is not
+signed. The account lead will present a renewal proposal by October 1; we are not assuming
+churn has occurred.
+
+Help requested
+
+Please introduce us to two hospital operations leaders for discovery calls and recommend a
+fractional finance lead.
+
+Next milestone
+
+Complete the next implementation milestone by September 30, 2026. No patient outcome or
+clinical efficacy claims are included in this update.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Synthetic, unaudited demo data. No affiliation with TGH or any actual company.                                                             4
