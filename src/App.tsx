@@ -120,7 +120,11 @@ function App({ config }: AppProps) {
 
     setStreamingContent('')
 
-    for await (const chunk of sendMessage(conversation.messages, attachments)) {
+    for await (const chunk of sendMessage(
+      conversation.messages,
+      attachments,
+      config.mockReplyText,
+    )) {
       assistantContent += chunk
       setStreamingContent(assistantContent)
     }
