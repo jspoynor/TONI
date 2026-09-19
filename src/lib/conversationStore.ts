@@ -259,3 +259,28 @@ export function setFolderCollapsed(
 
   return updated
 }
+
+/**
+ * One-time migration for conversations that predate folders. Finds
+ * conversations with no `folderId`; if any exist, creates a "General" folder
+ * and persists its id onto each of them (both the new `Folder` record and the
+ * updated `Conversation` records are written back to storage). No-op if
+ * there are no conversations, or if every conversation already has a
+ * `folderId` (i.e. migration already ran).
+ */
+export function migrateFolderlessConversations(storageKey: string): void {
+  const conversations = readStore(storageKey)
+  const folderless = conversations.filter((c) => !c.folderId)
+
+  if (folderless.length === 0) return
+
+  const generalFolder = createFolder(storageKey, 'General')
+
+  const migrated = conversations.map((conversation) =>
+    conversation.folderId
+      ? conversation
+      : { ...conversation, folderId: generalFolder.id },
+  )
+
+  writeStore(storageKey, migrated)
+}
