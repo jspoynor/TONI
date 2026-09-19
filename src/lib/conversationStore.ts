@@ -1,7 +1,5 @@
 import type { Attachment, ChatMessage, Conversation } from '../types'
 
-const STORAGE_KEY = 'toni:conversations'
-
 /**
  * `Attachment.file` holds a `File`, which cannot survive a round trip through
  * `JSON.stringify`/`localStorage` (it would silently serialize to `{}`). Before
@@ -49,10 +47,10 @@ function fromStoredMessage(message: StoredChatMessage): ChatMessage {
   }
 }
 
-function readStore(): Conversation[] {
+function readStore(storageKey: string): Conversation[] {
   let raw: string | null
   try {
-    raw = localStorage.getItem(STORAGE_KEY)
+    raw = localStorage.getItem(storageKey)
   } catch {
     return []
   }
@@ -72,14 +70,14 @@ function readStore(): Conversation[] {
   }
 }
 
-function writeStore(conversations: Conversation[]): void {
+function writeStore(storageKey: string, conversations: Conversation[]): void {
   const stored: StoredConversation[] = conversations.map((conversation) => ({
     ...conversation,
     messages: conversation.messages.map(toStoredMessage),
   }))
 
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(stored))
+    localStorage.setItem(storageKey, JSON.stringify(stored))
   } catch {
     // Storage may be unavailable (private browsing, quota exceeded, etc.).
     // Swallow the error so save failures never crash the app.
@@ -105,13 +103,16 @@ function deriveTitle(content: string): string {
 }
 
 /** Returns all conversations, most recently updated first. */
-export function listConversations(): Conversation[] {
-  return readStore().sort((a, b) => b.updatedAt - a.updatedAt)
+export function listConversations(storageKey: string): Conversation[] {
+  return readStore(storageKey).sort((a, b) => b.updatedAt - a.updatedAt)
 }
 
 /** Returns a single conversation by id, or `undefined` if it doesn't exist. */
-export function getConversation(id: string): Conversation | undefined {
-  return readStore().find((conversation) => conversation.id === id)
+export function getConversation(
+  storageKey: string,
+  id: string,
+): Conversation | undefined {
+  return readStore(storageKey).find((conversation) => conversation.id === id)
 }
 
 /**
@@ -120,7 +121,10 @@ export function getConversation(id: string): Conversation | undefined {
  * only invoke this once a message is actually sent (not eagerly on "New
  * Chat") so empty conversations never clutter the sidebar.
  */
-export function createConversation(firstMessage: ChatMessage): Conversation {
+export function createConversation(
+  storageKey: string,
+  firstMessage: ChatMessage,
+): Conversation {
   const now = Date.now()
   const conversation: Conversation = {
     id: generateId(),
@@ -130,9 +134,9 @@ export function createConversation(firstMessage: ChatMessage): Conversation {
     updatedAt: now,
   }
 
-  const conversations = readStore()
+  const conversations = readStore(storageKey)
   conversations.push(conversation)
-  writeStore(conversations)
+  writeStore(storageKey, conversations)
 
   return conversation
 }
@@ -143,10 +147,11 @@ export function createConversation(firstMessage: ChatMessage): Conversation {
  * Throws if `conversationId` doesn't match an existing conversation.
  */
 export function appendMessage(
+  storageKey: string,
   conversationId: string,
   message: ChatMessage,
 ): Conversation {
-  const conversations = readStore()
+  const conversations = readStore(storageKey)
   const index = conversations.findIndex((c) => c.id === conversationId)
 
   if (index === -1) {
@@ -160,7 +165,7 @@ export function appendMessage(
   }
 
   conversations[index] = updated
-  writeStore(conversations)
+  writeStore(storageKey, conversations)
 
   return updated
 }

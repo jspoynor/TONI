@@ -41,7 +41,8 @@ function App() {
   // Loads the conversation list on mount. Future tasks that mutate the store
   // (e.g. sending the first message of a new conversation) should call
   // `refreshConversations()` afterward to keep the sidebar in sync.
-  const refreshConversations = () => setConversations(listConversations())
+  const refreshConversations = () =>
+    setConversations(listConversations('toni:conversations'))
 
   // `listConversations()` already returns full `Conversation` objects
   // (including `messages`), so the active conversation's messages can be
@@ -84,11 +85,11 @@ function App() {
     let conversation: Conversation
 
     if (conversationId === null) {
-      conversation = createConversation(message)
+      conversation = createConversation('toni:conversations', message)
       conversationId = conversation.id
       setActiveConversationId(conversationId)
     } else {
-      conversation = appendMessage(conversationId, message)
+      conversation = appendMessage('toni:conversations', conversationId, message)
     }
     refreshConversations()
 
@@ -115,7 +116,7 @@ function App() {
       setStreamingContent(assistantContent)
     }
 
-    appendMessage(conversationId, {
+    appendMessage('toni:conversations', conversationId, {
       id: assistantId,
       role: 'assistant',
       content: assistantContent,
