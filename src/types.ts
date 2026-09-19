@@ -19,6 +19,14 @@ export interface Conversation {
   messages: ChatMessage[]
   createdAt: number
   updatedAt: number
+  folderId?: string // undefined for Anne's conversations, and for any not-yet-migrated Toni chat mid-migration
+}
+
+export interface Folder {
+  id: string
+  name: string
+  createdAt: number
+  collapsed: boolean
 }
 
 export interface ChatPageConfig {
@@ -29,4 +37,5 @@ export interface ChatPageConfig {
   accentBorder: string // rgba tint derived from accent
   emptyStateGreeting: string
   mockReplyText: string
+  foldersEnabled?: boolean
 }
